@@ -5,11 +5,29 @@ Inside app.js, create a GroceryList component that contains an unordered list of
 class GroceryListItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      done: false
+    }
+  }
+  onGroceryItemHover() {
+    console.log('triggered')
+    this.setState({
+      done: true
+    })
+  }
+  onGroceryItemUnHover() {
+    console.log('Unhover')
+    this.setState({
+      done: false
+    })
   }
   render() {
-    console.log(this.props)
+    //console.log(this.props)
+    var style = {
+      fontWeight: this.state.done ? 'bold' : 'normal'
+    }
     return (
-      <li>{this.props.Item}</li>
+      <li style={style} onMouseEnter={this.onGroceryItemHover.bind(this)} onMouseLeave={this.onGroceryItemUnHover.bind(this)}>{this.props.groceryItem}</li>
     );
   }
 }
@@ -17,7 +35,7 @@ class GroceryListItem extends React.Component {
 var GroceryList = (props) => (
   <ul>
     {props.groceryItems.map(groceryItem =>
-      <GroceryListItem key={groceryItem} Item={groceryItem} />
+      <GroceryListItem key={groceryItem} groceryItem={groceryItem} />
       )}
   </ul>
 );
