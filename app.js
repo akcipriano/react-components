@@ -3,37 +3,15 @@ Inside app.js, create a GroceryList component that contains an unordered list of
 */// TODO
 
 
-var Apple = () => (
-  <li>apple</li>
-);
-
-var Oranges = () => (
-  <li>oranges</li>
-);
-
-var GroceryList = () => (
+var GroceryListItem = (props) => (
   <ul>
-    <Oranges />
-    <Apple />
+    <li>{props.groceryItems[0]}</li>
+    <li>{props.groceryItems[1]}</li>
   </ul>
 );
 
+var GroceryList = () => (
+    <GroceryListItem groceryItems={['apple', 'oranges']}/>
+);
 
 ReactDOM.render(<GroceryList />, document.getElementById('app'))
-
-// var GroceryList = function GroceryList() {
-//   return React.createElement(
-//     'ul',
-//     null,
-//     React.createElement(
-//       'li',
-//       null,
-//       'apple'
-//     ),
-//     React.createElement(
-//       'li',
-//       null,
-//       'oranges'
-//     )
-//   );
-// };
